@@ -1,0 +1,36 @@
+# Welcome to serverless. Read the docs
+# https://serverless.com/framework/docs/
+
+# Serverless.yml is the configuration the CLI
+# uses to deploy your code to your provider of choice
+
+# The `service` block is the name of the service
+service: receeve-coding-challenge
+
+frameworkVersion: '2'
+
+# The `provider` block defines where your service will be deployed
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: eu-central-1
+  lambdaHashingVersion: 20201221
+  environment:
+    MAILGUN_WEBHOOK_API_KEY:
+    AWS_DYNAMODB_API_VERSION: 2012-08-10
+    AWS_SNS_API_VERSION: 2010-03-31
+    AWS_SNS_TOPIC: arn:aws:sns:eu-central-1:312190924013:EMAIL_PROCESSED
+    AWS_SNS_ACCESS_KEY:
+    AWS_SNS_SECRET_KEY:
+    AWS_SERVICES_REGION: eu-central-1
+
+
+# The `functions` block defines what code to deploy
+functions:
+  EmailWebhook:
+    handler: handler.emailWebhook
+    events:
+      - http:
+          path: webooks
+          method: post
+          cors: true
