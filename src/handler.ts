@@ -7,9 +7,7 @@ import { EmailWebhookHandler } from "./email-webhook.handler";
 import { HandlerResponseDto } from "./dto/handler-response.dto";
 import { NotificationPublisherEnum } from "./publisher/enum/notification-publisher.enum";
 import { ProviderEnum } from "./providers/enum/provider.enum";
-import { config } from "dotenv";
 
-config();
 
 async function webhookHandler(
     event: APIGatewayEvent,
